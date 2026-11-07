@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Get Trailhead to Costa Rica</title>
+    <meta name="description" content="Download Trailhead to Costa Rica — your honest guide to moving to or retiring in Costa Rica." />
+    <style>
+      :root { --teal: #229c93; --green: #0a6740; --ink: #1b2e22; --muted: #5c4a38; --sand: #e8a34a; }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--ink);
+        background: linear-gradient(180deg, #0d7a4b 0%, #14908a 55%, #2bb8ad 100%);
+        min-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 20px;
+      }
+      .card {
+        width: 100%;
+        max-width: 420px;
+        background: rgba(255,255,255,0.97);
+        border-radius: 22px;
+        padding: 36px 28px 32px;
+        text-align: center;
+        box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+      }
+      .mark {
+        width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 18px;
+        box-shadow: 0 12px 26px rgba(10,103,64,0.35);
+        overflow: hidden; display: block;
+      }
+      .mark img { width: 100%; height: 100%; display: block; object-fit: cover; }
+      h1 { font-size: 26px; margin: 0 0 6px; color: var(--green); line-height: 1.15; }
+      .tag { color: var(--muted); font-size: 15px; margin: 0 0 26px; }
+      .btns { display: flex; flex-direction: column; gap: 12px; }
+      a.store {
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+        text-decoration: none; font-weight: 700; font-size: 17px;
+        padding: 15px 18px; border-radius: 14px;
+        color: #fff; background: var(--ink);
+        transition: transform .12s ease, opacity .12s ease;
+      }
+      a.store:active { transform: scale(0.98); }
+      a.store.play { background: var(--green); }
+      a.store svg { width: 22px; height: 22px; flex: none; }
+      a.store small { display: block; font-size: 11px; font-weight: 500; opacity: .8; }
+      a.store .lbl { text-align: left; line-height: 1.1; }
+      .free { margin-top: 20px; color: var(--teal); font-weight: 700; font-size: 15px; }
+      .status { margin-top: 14px; font-size: 13px; color: var(--muted); min-height: 18px; }
+      footer { margin-top: 22px; font-size: 12px; color: var(--muted); }
+      footer a { color: var(--teal); }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="mark">
+        <img src="app-icon.png" alt="Trailhead to Costa Rica app icon" />
+      </div>
+      <h1>Trailhead to Costa Rica</h1>
+      <p class="tag">Your honest guide to moving to or retiring in Costa Rica.</p>
+
+      <div class="btns">
+        <a class="store" id="ios" href="https://apps.apple.com/app/trailhead-to-costa-rica/id6825573907">
+          <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.3 1.3c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .4-2 1-2.7.8-.8 2-1.4 2.8-1.4zM19 17c-.5 1.1-.7 1.6-1.3 2.6-.9 1.4-2.1 3.1-3.6 3.1-1.3 0-1.7-.9-3.5-.9s-2.2.9-3.5.9c-1.5 0-2.7-1.6-3.6-3C1.5 16.5.9 12 2.6 9.2c.9-1.4 2.4-2.3 3.9-2.3 1.4 0 2.3.9 3.5.9 1.1 0 1.8-.9 3.5-.9 1.3 0 2.6.7 3.6 1.9-3.1 1.7-2.6 6.2.9 8.2z"/></svg>
+          <span class="lbl"><small>Download on the</small>App Store</span>
+        </a>
+        <a class="store play" id="android" href="https://play.google.com/store/apps/details?id=com.trailhead.costarica">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M3.6 2.3c-.3.2-.5.6-.5 1.1v17.2c0 .5.2.9.5 1.1l9.3-9.7L3.6 2.3zm11 8.1l2.4-2.5L6.3 1.5c-.4-.2-.8-.2-1.1 0l9.4 8.9zm0 3.2l-9.4 8.9c.3.2.7.2 1.1 0l10.7-6.4-2.4-2.5zm5.9-4l-2.9-1.7-2.7 2.8 2.7 2.8 2.9-1.7c.7-.4.7-1.5 0-2.2z"/></svg>
+          <span class="lbl"><small>Get it on</small>Google Play</span>
+        </a>
+      </div>
+
+      <div class="free">Free to download</div>
+      <div class="status" id="status"></div>
+
+      <footer>
+        <a href="index.html">trailheadcostarica@gmail.com</a>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        var ua = navigator.userAgent || navigator.vendor || "";
+        var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+        var isAndroid = /android/i.test(ua);
+        var status = document.getElementById("status");
+        var APPLE = document.getElementById("ios").href;
+        var PLAY = document.getElementById("android").href;
+
+        // Smart redirect: send phones straight to their store, keep both as fallback.
+        if (isIOS) {
+          status.textContent = "Opening the App Store…";
+          setTimeout(function () { window.location.href = APPLE; }, 900);
+        } else if (isAndroid) {
+          status.textContent = "Opening Google Play…";
+          setTimeout(function () { window.location.href = PLAY; }, 900);
+        }
+        // On desktop/other: show both buttons, no redirect.
+      })();
+    </script>
+  </body>
+</html>
